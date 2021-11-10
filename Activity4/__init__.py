@@ -21,26 +21,52 @@ mycursor = mydb.cursor()
 # SELECT SUM(sold) AS 'Doanh số', SUM(sold * price) AS 'Doanh thu' FROM store_cms_plusplus.laptop;
 
 # 4.2 Viết chức năng thống kê số lượng, số tiền bán được của mỗi hãng laptop.
+class Counter:
+    def __init__(self, maker, quantity):
+        self.maker = maker
+        self.quantity = quantity
+
 def getCounterByMaker():
     str = "select maker, count(maker) 'quantity' from laptop group by maker order by quantity desc;"
     mycursor.execute(str)
     myresult = mycursor.fetchall()
+    list = []
     for x in myresult:
+        list.append(x)
+    return list
+
+def main():
+    list = getCounterByMaker()
+    for x in list:
         maker = x[0]
         quantity = x[1]
-        print(f" Maker: {maker}, Quantity: {quantity}")
+        print(f"Maker: {maker}, Quantity: {quantity}")
 
-getCounterByMaker()
+main()
+
+
 
 # 4.3 Viết tính năng thống kê số lượng loại máy tính của mỗi hãng, sắp xếp theo số lượng giảm dần
+class Counter:
+    def __init__(self, maker, quantity):
+        self.maker = maker
+        self.quantity = quantity
+
 def getStatisticByMaker():
     str = "select maker, sum(sold), sum(sold*price) 'totalMoney' from laptop group by maker ;"
     mycursor.execute(str)
     myresult = mycursor.fetchall()
+    list = []
     for x in myresult:
+        list.append(x)
+    return list
+
+def main1():
+    list = getStatisticByMaker()
+    for x in list:
         maker = x[0]
         sold = x[1]
         totalMoney = x[2]
-        print(f" Maker: {maker}, Sold: {sold}, totalMoney: {totalMoney}")
+        print(f"Maker: {maker}, Sold: {sold}, totalMoney: {totalMoney}")
 
-getStatisticByMaker()
+main1()
