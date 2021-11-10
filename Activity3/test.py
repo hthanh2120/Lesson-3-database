@@ -64,37 +64,4 @@ def seach_laptop(maker, type, screen_resolution, price, sold, start, end):
             (id, name, maker, type, ram, cpu, ssd, hdd, price, card, screen_resolution, screen_size, sold))
 
 
-seach_laptop("ASUS", "Vivo", None, None, None, "10000000", "50000000")
-
-
-
-
-
-
-# def seach_laptop():
-#     sql = "SELECT maker, count(*) as quantity FROM store_cms_plusplus.laptop group by maker order by quantity desc"
-#
-#     print(sql)
-#     mycursor.execute(sql)
-#     myresult = mycursor.fetchall()
-#
-#     for x in myresult:
-#         print("maker:", x[0] + " quantity:", x[1])
-#      maker = x[0]
-#      quantity = x[1]
-#      maker = x[3]
-#      type = x[4]
-#      ram = x[5]
-#      cpu = x[6]
-#      ssd = x[7]
-#      hdd = x[8]
-#      price = x[9]
-#      card = x[10]
-#      screen_resolution = x[11]
-#      screen_size = x[12]
-#      sold = x[13]
-#          print("id: %s, name: %s, maker: %s, type: %s, ram: %s, cpu: %s, ssd: %s, hdd: %s, price: %s, card: %s, screen_resolution: %s, screen_size: %s, sold: %s" % \
-#              (id, name, maker, type, ram, cpu, ssd, hdd, price, card, screen_resolution, screen_size, sold))
-#
-#
-# seach_laptop()
+seach_laptop(None, None, None, None, None, "10000000", "50000000")
