@@ -25,6 +25,8 @@ class Counter:
     def __init__(self, maker, quantity):
         self.maker = maker
         self.quantity = quantity
+    def __str__(self):
+        return "Maker: %s, Quantity: %s" % (self.maker, self.quantity)
 
 def getCounterByMaker():
     str = "select maker, count(maker) 'quantity' from laptop group by maker order by quantity desc;"
@@ -32,25 +34,22 @@ def getCounterByMaker():
     myresult = mycursor.fetchall()
     list = []
     for x in myresult:
-        list.append(x)
-    return list
-
-def main():
-    list = getCounterByMaker()
+        counter = Counter(x[0], x[1])
+        list.append(counter)
+    print(list)
     for x in list:
-        maker = x[0]
-        quantity = x[1]
-        print(f"Maker: {maker}, Quantity: {quantity}")
+        print(x)
 
-main()
-
-
+getCounterByMaker()
 
 # 4.3 Viết tính năng thống kê số lượng loại máy tính của mỗi hãng, sắp xếp theo số lượng giảm dần
-class Counter:
-    def __init__(self, maker, quantity):
+class Statistic:
+    def __init__(self, maker, sold, totalMoney):
         self.maker = maker
-        self.quantity = quantity
+        self.sold = sold
+        self.totalMoney = totalMoney
+    def __str__(self):
+        return "Maker: %s, Sold: %s, Total Money:" % (self.maker, self.sold, self.totalMoney)
 
 def getStatisticByMaker():
     str = "select maker, sum(sold), sum(sold*price) 'totalMoney' from laptop group by maker ;"
@@ -58,15 +57,10 @@ def getStatisticByMaker():
     myresult = mycursor.fetchall()
     list = []
     for x in myresult:
+        statistic = Statistic(x[0], x[1], x[2])
         list.append(x)
-    return list
-
-def main1():
-    list = getStatisticByMaker()
+    print(list)
     for x in list:
-        maker = x[0]
-        sold = x[1]
-        totalMoney = x[2]
-        print(f"Maker: {maker}, Sold: {sold}, totalMoney: {totalMoney}")
+        print(x)
 
-main1()
+getStatisticByMaker()
