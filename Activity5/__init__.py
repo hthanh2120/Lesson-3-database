@@ -5,7 +5,7 @@ mydb = mysql.connector.connect(
     port="3306",
     user="root",
     password="21102000",
-    database="store_cms_plusplus"
+    database="product_orders_plusplus"
 )
 
 mycursor = mydb.cursor()
